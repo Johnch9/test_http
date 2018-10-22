@@ -10,7 +10,6 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
 
 	"github.com/davecgh/go-spew/spew"
@@ -54,7 +53,8 @@ func init() {
 func main() {
 	log.SetFlags(log.LstdFlags | log.Llongfile)
 
-	clientID = os.Getenv("AZURE_AD_CLIENT_ID")
+	clientID = "fd3e0c41-0d97-4a46-a4bc-bbf9f86edfe6"
+	//clientID = os.Getenv("AZURE_AD_CLIENT_ID")
 	if clientID == "" {
 		log.Fatal("AZURE_AD_CLIENT_ID must be set.")
 	}
