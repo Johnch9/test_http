@@ -4,9 +4,10 @@ FROM golang:1.11.1-alpine AS builder
 
 RUN apk update && apk add curl git
 
-RUN go get github.com/labstack/echo
-RUN go get github.com/labstack/echo/middleware
-RUN go get github.com/sirupsen/logrus
+RUN go get github.com/davecgh/go-spew/spew
+RUN go get github.com/gorilla/sessions
+RUN go get golang.org/x/oauth2
+RUN go get golang.org/x/net/context
 
 # set build arguments: GitHub user and repository
 ARG GH_USER
