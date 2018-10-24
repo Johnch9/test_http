@@ -18,8 +18,11 @@ import (
 	"golang.org/x/oauth2"
 )
 
+// ApplicationId 9f7d1ceb-bc17-4405-8370-5d2e3cc59006
+// Key $A3F=6DRE?9;$2=J9jbX\S{7
+
 const (
-	redirectURI string = "http://localhost:8080/callback"
+	redirectURI string = "https://65.52.152.47:8080"
 )
 
 // Authentication + Encryption key pairs
@@ -59,17 +62,29 @@ func main() {
 		log.Fatal("AZURE_AD_CLIENT_ID must be set.")
 	}
 
-	config = &oauth2.Config{
-		ClientID:     clientID,
-		ClientSecret: "", // no client secret
-		RedirectURL:  redirectURI,
+	// config = &oauth2.Config{
+	// 	ClientID:     clientID,
+	// 	ClientSecret: "", // no client secret
+	// 	RedirectURL:  redirectURI,
 
+	// 	Endpoint: oauth2.Endpoint{
+	// 		AuthURL:  "https://login.microsoftonline.com/common/oauth2/authorize",
+	// 		TokenURL: "https://login.microsoftonline.com/common/oauth2/token",
+	// 	},
+
+		
+
+	// 	Scopes: []string{"User.Read"},
+	// }
+
+	conf := &oauth2.Config{
+		ClientID:     "9f7d1ceb-bc17-4405-8370-5d2e3cc59006",
+		ClientSecret: "$A3F=6DRE?9;$2=J9jbX\\S{7",
+		Scopes:       []string{"https://graph.microsoft.com/.default"},
 		Endpoint: oauth2.Endpoint{
-			AuthURL:  "https://login.microsoftonline.com/common/oauth2/authorize",
-			TokenURL: "https://login.microsoftonline.com/common/oauth2/token",
-		},
-
-		Scopes: []string{"User.Read"},
+			AuthURL:  "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/v2.0/auth",
+			TokenURL: "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/v2.0/token",
+		}
 	}
 
 	http.Handle("/", handle(IndexHandler))
