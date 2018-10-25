@@ -72,19 +72,17 @@ func main() {
 	// 		TokenURL: "https://login.microsoftonline.com/common/oauth2/token",
 	// 	},
 
-		
-
 	// 	Scopes: []string{"User.Read"},
 	// }
 
-	conf := &oauth2.Config{
+	config = &oauth2.Config{
 		ClientID:     "9f7d1ceb-bc17-4405-8370-5d2e3cc59006",
 		ClientSecret: "$A3F=6DRE?9;$2=J9jbX\\S{7",
 		Scopes:       []string{"https://graph.microsoft.com/.default"},
 		Endpoint: oauth2.Endpoint{
 			AuthURL:  "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/v2.0/auth",
 			TokenURL: "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/v2.0/token",
-		}
+		},
 	}
 
 	http.Handle("/", handle(IndexHandler))
