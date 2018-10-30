@@ -22,7 +22,8 @@ import (
 // Key $A3F=6DRE?9;$2=J9jbX\S{7
 
 const (
-	redirectURI string = "https://65.52.152.47:8080"
+	//	redirectURI string = "https://65.52.152.47:8080"
+	redirectURI string = "https://65.52.152.47:443"
 )
 
 // Authentication + Encryption key pairs
@@ -56,7 +57,7 @@ func init() {
 func main() {
 	log.SetFlags(log.LstdFlags | log.Llongfile)
 
-	clientID = "fd3e0c41-0d97-4a46-a4bc-bbf9f86edfe6"
+	clientID = "9f7d1ceb-bc17-4405-8370-5d2e3cc59006"
 	//clientID = os.Getenv("AZURE_AD_CLIENT_ID")
 	if clientID == "" {
 		log.Fatal("AZURE_AD_CLIENT_ID must be set.")
@@ -78,9 +79,9 @@ func main() {
 	config = &oauth2.Config{
 		ClientID:     "9f7d1ceb-bc17-4405-8370-5d2e3cc59006",
 		ClientSecret: "$A3F=6DRE?9;$2=J9jbX\\S{7",
-		Scopes:       []string{"https://graph.microsoft.com/.default"},
+		//		Scopes:       []string{"https://graph.microsoft.com/.default"},
 		Endpoint: oauth2.Endpoint{
-			AuthURL:  "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/v2.0/auth",
+			AuthURL:  "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/authorize",
 			TokenURL: "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/v2.0/token",
 		},
 	}
@@ -194,7 +195,7 @@ func CallbackHandler(w http.ResponseWriter, req *http.Request) error {
 	form.Set("client_id", clientID)
 	form.Set("code", req.FormValue("code"))
 	form.Set("redirect_uri", redirectURI)
-	form.Set("resource", "https://graph.windows.net")
+	form.Set("resource", "test_app")
 
 	tokenReq, err := http.NewRequest(http.MethodPost, config.Endpoint.TokenURL, strings.NewReader(form.Encode()))
 	if err != nil {
