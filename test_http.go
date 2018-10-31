@@ -55,6 +55,7 @@ func init() {
 }
 
 func main() {
+	fmt.Println("Starting")
 	log.SetFlags(log.LstdFlags | log.Llongfile)
 
 	clientID = "9f7d1ceb-bc17-4405-8370-5d2e3cc59006"
@@ -142,6 +143,8 @@ func IndexHandler(w http.ResponseWriter, req *http.Request) error {
 		AuthURL: config.AuthCodeURL(SessionState(session), oauth2.AccessTypeOnline),
 	}
 
+	fmt.Println(data)
+
 	return indexTempl.Execute(w, &data)
 }
 
@@ -222,6 +225,8 @@ func CallbackHandler(w http.ResponseWriter, req *http.Request) error {
 	if err := sessions.Save(req, w); err != nil {
 		return fmt.Errorf("error saving session: %v", err)
 	}
+
+	fmt.Println(req)
 
 	http.Redirect(w, req, "/", http.StatusFound)
 	return nil
