@@ -80,9 +80,9 @@ func main() {
 	config = &oauth2.Config{
 		ClientID:     "9f7d1ceb-bc17-4405-8370-5d2e3cc59006",
 		ClientSecret: "$A3F=6DRE?9;$2=J9jbX\\S{7",
-		//		Scopes:       []string{"https://graph.microsoft.com/.default"},
+		Scopes:       []string{"openid", "profile"},
 		Endpoint: oauth2.Endpoint{
-			AuthURL:  "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/authorize",
+			AuthURL:  "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/v2.0/authorize",
 			TokenURL: "https://login.microsoftonline.com/capitadsp.onmicrosoft.com/oauth2/v2.0/token",
 		},
 	}
